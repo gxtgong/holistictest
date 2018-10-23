@@ -12,6 +12,9 @@ if (!fs.existsSync('./testdata')){
 function processed (s) {
 	return s.replace(/%20/g, " ");
 }
+var video = {};
+video["nameArray"] = fs.readdirSync("./demo");
+fs.writeFileSync('demo.json', JSON.stringify(video, null, 4));
 
 http.createServer(function(req, res) {
 

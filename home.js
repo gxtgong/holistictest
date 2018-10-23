@@ -57,6 +57,11 @@ function timestamp(raw=false) {
 }
 
 $(document).ready(function(){
+    $.getJSON('demo.json', function(data){
+        all = data["nameArray"];
+        shuffled = all.sort(()=> .5-Math.random());
+        vs = shuffled.slice(0,4);
+    });
     captureCamera(function(camera) {
         setSrcObject(camera, vidresult);
         //vidresult.play();
@@ -347,7 +352,7 @@ function flashText(){
 
 function timedTest(vid, t, m, epanel){
     // load and play video
-    vid.src = vs[test_count];
+    vid.src = 'demo/'+vs[test_count];
     t.classList.remove('d-none');
     userData.test[test_count] = {"videoStart": timestamp(true)};
     userData.test[test_count]["coordinate"] = [];
