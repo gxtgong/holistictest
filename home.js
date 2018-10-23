@@ -53,7 +53,7 @@ function timestamp(raw=false) {
     var msec = d.getMilliseconds();
     if (msec<10) {msec="0"+msec;}
     if (msec<100) {msec="0"+msec;}
-    return year+month+date+hour+minute+sec+msec;
+    return [year+month+date+hour+minute+sec+msec,d];
 }
 
 $(document).ready(function(){
@@ -73,7 +73,7 @@ $(document).ready(function(){
         vidrecorder.startRecording();
         vidrecorder.camera = camera;
     });
-    userData.startTime = timestamp();
+    userData.startTime = timestamp()[0];
     $("#vid-emo").css("left", ($(window).width() - $("#vid-emo").width())/2);
     //setCircularPosition("#vid-emo");
 });
@@ -302,13 +302,13 @@ function p5() {
             speedLevel = this.value;
             if (speedLevel == "low") {
                 console.log("Speed changed to low");
-                speed = 0.8;
+                speed = 0.7;
             }else if (speedLevel == "med") {
                 console.log("Speed changed to median");
-                speed = 0.5;
+                speed = 0.4;
             }else if (speedLevel == "high") {
                 console.log("Speed changed to high");
-                speed = 0.3;
+                speed = 0.25;
             }else{
                 console.log("No change applied: "+speedLevel);
             }
@@ -331,22 +331,28 @@ function p5() {
 
 function flashText(){
     //speed = letter/sec (global variable)
-    word = passage.shift();
+    var word = passage.shift();
     $("#p-text").html(word);
-    userData[title].push(timestamp());
+    var wordStamp = {
+        "word": word,
+        "time": timestamp()[0],
+        "machine_time": timestamp()[1]
+    };
+    if (title!="textsample") {
+        userData[title].push(wordStamp);
+    }
     nletter = word.length;
     if(passage.length > 0){
         setTimeout(function(){
             flashText();
-            console.log("nletter "+ nletter);
-            console.log(speed);
+            console.log("nletter "+nletter+"at speed "+speed);
         },nletter*speed*100);
-    }else{
-        $("#div-text").addClass("d-none");
-        endTest();
+    } else {
         /*$.post(userData["name"]+'.json', JSON.stringify(userData, null, 4), function(){
             console.log("Post "+ userData["name"]+'.json successfully');
         });*/
+        $("#div-test").removeClass("d-none");
+        endTest();
     }
 }
 
