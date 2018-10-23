@@ -182,7 +182,9 @@
         <!-- Tutorial -->
         <div class="d-none row" id="div-tutorial">
             <div class="col-md-12 text-center">
-                <video id="video-tutorial" style="max-height: 100vh; max-width: 100vw;" src="tutorial-her.mp4" controls>Fail to load tutorial.</video>
+                <h1>Watch a tutorial to get the gist of the test. Skip it whenever you want.</h1>
+                <!--video style="max-height: 100vh; max-width: 100vw;" src="tutorial-her.mp4" controls>Fail to load tutorial.</video-->
+                <iframe id="video-tutorial" width="560" height="315" src="https://www.youtube.com/embed/n1AjtIAje3o" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
         <!-- Test -->
@@ -213,7 +215,7 @@
         <!-- Text test-->
         <div class="d-none text-white" id="div-text"><div class="row">
             <div class="col-md-6">
-                <p>Text reading test</p>
+                <h1 id="speed-instruction">Choose a speed level that you are comfortable with and click "Go".</h1>
                 <button class="btn btn-outline-light" type="button" id="btn-go">Go</button>
                 <!--div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Name" aria-label="name" aria-describedby="button-addon2" id="name" required>
@@ -222,16 +224,16 @@
                     </div>
                 </div-->
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-6 text-right" id="btn-speed">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-dark active">
-                        <input type="radio" name="speed" value = "low" id="low" autocomplete="off" checked> Low
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="speed" value = "low" id="low"> Low
                     </label>
-                    <label class="btn btn-dark">
-                        <input type="radio" name="speed" value="med" id="med" autocomplete="off"> Medium
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="speed" value="med" id="med"> Medium
                     </label>
-                    <label class="btn btn-dark">
-                        <input type="radio" name="speed" value="high" id="high" autocomplete="off"> High
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="speed" value="high" id="high"> High
                     </label>
                 </div>
             </div>

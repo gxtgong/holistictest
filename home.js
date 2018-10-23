@@ -124,7 +124,7 @@ function setMouseClick(){
         centerR = $("#img-emotion").height()/2;
         //console.log("x y r "+xPos+" "+yPos+" "+centerR)
         if (distance(xPos,yPos,centerR, centerR) < centerR){
-            $("#msg-emo").html("Press any key to reselect");
+            $("#msg-emo").html("Press any key on the keyboard to reselect");
             userData.test[test_count]["coordinate"].unshift([xPos/centerR,yPos/centerR]);
             $("#marker").removeClass('d-none');
             $("#marker").css({top: e.pageY - 137, left: e.pageX-10});
@@ -133,6 +133,7 @@ function setMouseClick(){
             $(document).keydown(function(e){
                 setMouseEffect();
                 setMouseClick();
+                document.getElementById("msg-emo").innerHTML = "Select a place to click on the color wheel.";
                 $("#marker").addClass('d-none');
                 $(document).unbind("keydown");
             });
@@ -246,7 +247,7 @@ function p2() {
         $("#step-emo").unbind("click");
 
         document.getElementById("img-emotion").classList.remove('d-none');
-        document.getElementById("msg-emo").innerHTML = "Select an emotion coordinate.";
+        document.getElementById("msg-emo").innerHTML = "Select a place to click on the color wheel.";
         $( ".img-circle" ).each(function(){
             $(this).unbind("click");
         });
@@ -263,7 +264,6 @@ function p2() {
 }
 
 function p3() {
-    document.getElementById("video-tutorial").pause();
     document.getElementById("div-tutorial").classList.add('d-none');
     document.getElementById("msg").classList.remove('d-none');
     document.getElementById("msg").style.marginTop = "100px";
@@ -316,7 +316,8 @@ function p5() {
         $.getJSON('corpus.json', function(data){
             $("#btn-go").click(function(){
                 corpus = data;
-                $('input[type=radio][name=speed]').attr("disabled", "disabled");
+                $("#btn-speed").addClass("d-none");
+                $("#speed-instruction").html("Reading a passage...")
                 titles = Object.keys(corpus);
                 title = titles[Math.floor(Math.random() * titles.length)];
                 temp = corpus[title];
@@ -351,7 +352,7 @@ function flashText(){
         /*$.post(userData["name"]+'.json', JSON.stringify(userData, null, 4), function(){
             console.log("Post "+ userData["name"]+'.json successfully');
         });*/
-        $("#div-test").removeClass("d-none");
+        $("#div-test").addClass("d-none");
         endTest();
     }
 }
@@ -362,6 +363,7 @@ function timedTest(vid, t, m, epanel){
     t.classList.remove('d-none');
     userData.test[test_count] = {"videoStart": timestamp(true)};
     userData.test[test_count]["coordinate"] = [];
+    userData.test[test_count]["videoName"] = vs[test_count];
     vid.play();
     // after 6 sec, pause and message
     setTimeout(function(){
@@ -391,7 +393,7 @@ function timedTest(vid, t, m, epanel){
                 $("#marker").addClass('d-none');
                 userData.test[test_count]["isSeenBefore"] = $("#check-before").prop("checked");
                 $("#check-before").prop("checked", false);
-                document.getElementById("msg-emo").innerHTML = "Select an emotion coordinate.";
+                document.getElementById("msg-emo").innerHTML = "Select a place to click on the color wheel.";
                 userData.test[test_count]["selectionStop"] = timestamp(true);
                 test_count ++;
                 if (test_count < vs.length) {
@@ -411,6 +413,7 @@ function timedTest(vid, t, m, epanel){
 function endTest(){
     m = document.getElementById("msg");
     m.innerHTML = "Test done.";
+    m.classList.add("text-white");
     vidrecorder.stopRecording(function(){
         vidresult.src = vidresult.srcObject = null;
         vidresult.src = URL.createObjectURL(vidrecorder.getBlob());
@@ -423,8 +426,8 @@ function endTest(){
     //document.getElementById("p-result").innerHTML = "saved";//JSON.stringify(userData, null, 4).replace(/\n/g, "<br />");
     //document.getElementById("p-result").classList.remove('d-none');
     m.classList.remove('d-none');
-    document.getElementById("div-result").classList.remove('d-none');
-    document.getElementById("div-p").classList.remove('d-none');
+    //document.getElementById("div-result").classList.remove('d-none');
+    //document.getElementById("div-p").classList.remove('d-none');
     $("#save-result").click(function(){
         vidrecorder.save(userData['fileName']+'.webm');
     })
