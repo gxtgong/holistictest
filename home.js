@@ -236,7 +236,7 @@ function p2() {
         return userData.hasOwnProperty(emotion);
     });
     //the following line is just for testing
-    //comment out in the test
+    //comment out in the real test
     //completed = ['happy', 'sad', 'angry', 'fear', 'disgust', 'surprise'];
     if (completed.length == 6) {
         document.getElementById("div-emotions").classList.add('d-none');
