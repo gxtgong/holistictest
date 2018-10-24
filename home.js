@@ -20,7 +20,7 @@ var record = '';
 var userData = {};
 
 //change this to your own video srcs
-var vs = ["videodataset/Chrish - Indie girl introduces us to her kitchen (Vine)-8SU0gFPMwP8.mp4", "videodataset/Fresh Like You Do-AeS1MNo5rCs.mp4"];
+var vs = [];
 var uris = {};
 
 var vidresult = document.getElementById("result-video");
@@ -314,14 +314,13 @@ function p5() {
                 console.log("No change applied: "+speedLevel);
             }
         });
-        $.getJSON('corpus.json', function(data){
+        $.getJSON('newcorpus.json', function(data){
             $("#btn-go").click(function(){
                 corpus = data;
                 $("#btn-speed").addClass("d-none");
-                $("#speed-instruction").html("Reading a passage...")
                 titles = Object.keys(corpus);
                 title = titles[Math.floor(Math.random() * titles.length)];
-                $("#speed-instruction").html("You are reading "+title);
+                $("#speed-instruction").html("Story: "+title);
                 passage = corpus[title];
                 userData[title] = [];
                 $("#btn-go").attr("disabled","disabled");
@@ -352,7 +351,7 @@ function flashText(){
         /*$.post(userData["name"]+'.json', JSON.stringify(userData, null, 4), function(){
             console.log("Post "+ userData["name"]+'.json successfully');
         });*/
-        $("#div-test").addClass("d-none");
+        $("#div-text").addClass("d-none");
         endTest();
     }
 }
@@ -412,7 +411,7 @@ function timedTest(vid, t, m, epanel){
 
 function endTest(){
     m = document.getElementById("msg");
-    m.innerHTML = "Test done.";
+    m.innerHTML = "Test ends. Thank you for your time and cooperation!";
     m.classList.add("text-white");
     vidrecorder.stopRecording(function(){
         vidresult.src = vidresult.srcObject = null;

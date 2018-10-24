@@ -12,7 +12,7 @@ if (!fs.existsSync('./testdata')){
 function processed (s) {
 	return s.replace(/%20/g, " ");
 }
-var corpus = {
+/*var corpus = {
     // two stories: one with a buildup and another with linear emotions
     // how bucket of meaning of story gets filled
     "Death Buys A Coffee": "Death goes to buy a coffee, but inside the cafe, everyone is too preoccupied to notice. At the doorway, he leaves his scythe propped up against the wall and drapes his cobwebbed cloak over the coat hanger. He eyes the menu scrawled overhead with chalk, the frame of his jaw parted in perpetual uncertainty. The barista taps her foot from behind the counter and makes a face. \"Sir, are you ready to order? We have customers waiting, you know,\" she huffs. Death glances over his shoulder to meet the glare of a wrinkly-eyed woman. \"Ah–my bad. Just give me a moment.\" He pauses. \"I’d like a regular, hot, organic caramel latte with mocha drizzle–oh, and make it gluten-free, please.\" \"Your name?\" \"Death,\" says Death. He reaches into his pocket for spare change, though it\'s mostly made up of wadded five-dollar bills and quarters. He makes sure to drop a dime into the tip jar as he nods sheepishly at the barista. She rolls her eyes. \"That\'ll be \$4.39.\" Another worker slides his mug down the countertop, and Death curls his bony fingers around it, taking a whiff. It’s sweet. Perhaps a bit too much for his taste. He wanders into the back of the room, searching for a vacant seat. Somewhere there is a vinyl record player oozing out a man’s low humming of a familiar song. Death sings along, finding an armchair near a window overlooking the street. From outside, figures dart down the sidewalk with faces tucked into mufflers. A red-nosed woman passes and catches him staring. Death smiles, but she turns away. As he is settling in, the door springs open and wind rushes in. He spills a bit of latte. Death winces, then glances up at a little girl with a wide, toothy grin. \"Hi!\" she says. \"I saw you through the window. I like your costume!” She takes a seat next to Death, waving at her mother who’s ordering at the front. A woman with worn lines etched into her skin looks back, her expression vacant. Absent of contentment. If anything, she could appear no less unconcerned about her daughter making conversation with a peculiar, darkly-clothed entity. Instead, the air around her is reminiscent of fresh grief. The girl continues to beam at Death, half-expecting a response. He clears his throat. \"Really,” Death muses. \"Shouldn’t you be in school?” The little girl frowns. \"I would be, but Mama’s going to see Kitty at the vet’s next door.” \"Kitty?” \"That’s our cat. She’s being put down today.” Death takes a slow sip. \"Is that so?” \"Yeah. Mama says that means everything is going to be okay again. You see, Kitty’s been sick for a while.” He sets his mug down, watching the steam spin into sinewy tendrils. Death tilts his head to the side and peers at his scythe, still balanced against the wall undisturbed. He ruffles the hair of the little girl and she giggles. A sad smile creeps onto his face. \"...I see.\"",
@@ -29,7 +29,7 @@ function split(corpus) {
 split(corpus);
 //var video = {};
 //video["nameArray"] = fs.readdirSync("./demo");
-fs.writeFileSync('newcorpus.json', JSON.stringify(corpus, null, 4));
+fs.writeFileSync('newcorpus.json', JSON.stringify(corpus, null, 4));*/
 
 http.createServer(function(req, res) {
 
