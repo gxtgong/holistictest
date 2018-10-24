@@ -285,7 +285,7 @@ function p4() {
 
 var passage = [];
 var speed = 0.8;
-var title ="textsample";
+var title = "";
 
 function p5() {
     $("body").css("background-color","#000000");
@@ -296,19 +296,20 @@ function p5() {
         sampletitles = Object.keys(data);
         s = sampletitles[Math.floor(Math.random() * sampletitles.length)];
         passage = data[s];
+        title ="textsample";
         userData["textsample"] = [];
         flashText();
         $('input[type=radio][name=speed]').change(function(){
             speedLevel = this.value;
             if (speedLevel == "low") {
                 console.log("Speed changed to low");
-                speed = 0.7;
+                speed = 1.2;
             }else if (speedLevel == "med") {
                 console.log("Speed changed to median");
-                speed = 0.4;
+                speed = 0.75;
             }else if (speedLevel == "high") {
                 console.log("Speed changed to high");
-                speed = 0.25;
+                speed = 0.55;
             }else{
                 console.log("No change applied: "+speedLevel);
             }
@@ -320,9 +321,8 @@ function p5() {
                 $("#speed-instruction").html("Reading a passage...")
                 titles = Object.keys(corpus);
                 title = titles[Math.floor(Math.random() * titles.length)];
-                temp = corpus[title];
-                temp.unshift("You are reading "+title);
-                passage = temp;
+                $("#speed-instruction").html("You are reading "+title);
+                passage = corpus[title];
                 userData[title] = [];
                 $("#btn-go").attr("disabled","disabled");
             });
@@ -347,7 +347,7 @@ function flashText(){
         setTimeout(function(){
             flashText();
             console.log("nletter "+nletter+"at speed "+speed);
-        },nletter*speed*100);
+        },(Math.sqrt(nletter))^2*speed*100);
     } else {
         /*$.post(userData["name"]+'.json', JSON.stringify(userData, null, 4), function(){
             console.log("Post "+ userData["name"]+'.json successfully');
